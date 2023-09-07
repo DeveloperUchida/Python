@@ -3,25 +3,26 @@ import tkinter.filedialog as fd
 import PIL.Image
 import PIL.ImageTk
 
-def dispPhoto(path,imageLabel = None):
+def dispPhoto(path):
     # 画像を読み込む
-    newImage = PIL.Image .open(path).resize((300,300))
-    #そのイメージをラベルに表示する
+    newImage = PIL.Image.open(path).resize((300, 300))
+    # そのイメージをラベルに表示する
     imageData = PIL.ImageTk.PhotoImage(newImage)
-    imageLabel.configre(image = imageData)
+    imageLabel.configure(image=imageData)
     imageLabel.image = imageData
 
-    def openFile():
-        fpath = fd.askopenfilename()
+def openFile():
+    fpath = fd.askopenfilename()
 
-        if fpath:
-            dispPhoto(fpath)
+    if fpath:
+        dispPhoto(fpath)
 
-        root = tk.Tk()
-        root.geometry("400x350")
+root = tk.Tk()
+root.geometry("400x350")
 
-        btn = tk.Button(text="FailOpenButton",command=openFile)
-        imageLabel = tk.Label()
-        btn.pack()
-        imageLabel.pack()
-        tk.mainloop()
+btn = tk.Button(text="Open File", command=openFile)
+imageLabel = tk.Label()
+btn.pack()
+imageLabel.pack()
+
+tk.mainloop()
